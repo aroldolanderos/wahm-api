@@ -42,6 +42,11 @@ Run the following command to run startup migrations.
 adonis migration:run
 ```
 
+For dummy data, run:
+```js
+adonis migration:refresh && adonis seed 
+```
+
 For more adonis commands just run:
 ```js
 adonis
