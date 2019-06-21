@@ -7,17 +7,14 @@ API to store in what I wpend my money and how much destiny for it.
 
 Clone the repo and then run `npm install`.
 
-```mysql
-create database wham_db;
 ```
-
-```bash
-Generate app key:
-
-adonis key:generate
+Create a database, like: db_wahm
 ```
 
 Enviroment variables:
+```
+cp .env.example .env
+```
 
 ```
 APP_KEY=<generate_key>
@@ -25,11 +22,17 @@ APP_KEY=<generate_key>
 DB_CONNECTION=mysql
 DB_HOST=127.0.0.1
 DB_PORT=3306
-DB_USER=<user>
-DB_PASSWORD=<password>
-DB_DATABASE=wham_db
+DB_USER=<db_user>
+DB_PASSWORD=<db_password>
+DB_DATABASE=<db_name>
 
 ```
+
+Generate app key:
+```bash
+adonis key:generate
+```
+
 
 ### Migrations
 
