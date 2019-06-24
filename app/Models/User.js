@@ -1,10 +1,8 @@
 'use strict'
 
-/** @type {import('@adonisjs/framework/src/Hash')} */
-const Hash = use('Hash')
-
-/** @type {typeof import('@adonisjs/lucid/src/Lucid/Model')} */
-const Model = use('Model')
+const Hash = use('Hash');
+const Model = use('Model');
+const Wallet = use('App/Models/Wallet');
 
 class User extends Model {
   static boot () {
@@ -18,7 +16,13 @@ class User extends Model {
       if (userInstance.dirty.password) {
         userInstance.password = await Hash.make(userInstance.password)
       }
-    })
+    });
+
+    this.addHook('afterCreate', async (userInstance) => {
+      // create a wallet for the new user
+      let wallet = new Wallet();
+      userInstance.wallet().save(wallet);
+    });
   }
 
   /**

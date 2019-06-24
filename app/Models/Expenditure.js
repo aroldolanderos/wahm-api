@@ -4,6 +4,15 @@ const Model = use('Model');
 
 class Expenditure extends Model {
 
+  static boot () {
+    super.boot();
+
+    this.addHook('beforeSave', async (expenditureInstance) => {
+      expenditureInstance.created_at = new Date();
+      expenditureInstance.updated_at = new Date();
+    });
+  }
+
   static get createdAtColumn() {
     return null;
   }

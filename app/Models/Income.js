@@ -4,6 +4,14 @@ const Model = use('Model');
 
 class Income extends Model {
 
+  static boot () {
+    super.boot();
+
+    this.addHook('beforeSave', async (incomeInstance) => {
+      incomeInstance.created_at = new Date();
+    });
+  }
+
   static get createdAtColumn() {
     return null;
   }
