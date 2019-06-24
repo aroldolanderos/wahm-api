@@ -13,7 +13,20 @@
 |
 */
 
-/** @type {typeof import('@adonisjs/framework/src/Route/Manager')} */
 const Route = use('Route')
 
-Route.on('/').render('welcome')
+
+Route.group(() => {
+  Route.post('login', 'AuthController.login');
+  Route.post('register', 'AuthController.register');
+  Route.put('profile', 'AuthController.profile').middleware(['auth:jwt']);
+
+  Route.get('incomes/:id', 'IncomeController.findOne').middleware(['auth']);
+  Route.get('incomes', 'IncomeController.all').middleware(['auth']);
+  Route.post('incomes', 'IncomeController.save').middleware(['auth']);
+
+  Route.get('expenditures/:id', 'ExpenditureController.findOne').middleware(['auth']);
+  Route.get('expenditures', 'ExpenditureController.all').middleware(['auth']);
+  Route.post('expenditures', 'ExpenditureController.save').middleware(['auth']);
+
+}).prefix('api/v1');
