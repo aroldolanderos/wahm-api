@@ -41,12 +41,12 @@ class ExpenditureController {
 
     const newExpenditure = new Expenditure();
     newExpenditure.wallet_id = wallet.id;
-    newExpenditure.amount = request.input('amount');;
-    newExpenditure.name = request.input('name');;
-    newExpenditure.quantity = request.input('quantity');;
-    newExpenditure.measure = request.input('measure');;
-    newExpenditure.category = request.input('category');;
-    newExpenditure.level_need = request.input('level_need');;
+    newExpenditure.amount = request.input('amount');
+    newExpenditure.name = request.input('name');
+    newExpenditure.quantity = request.input('quantity');
+    newExpenditure.measure = request.input('measure');
+    newExpenditure.category = request.input('category');
+    newExpenditure.level_need = request.input('level_need');
     await newExpenditure.save();
 
     return response.json({
