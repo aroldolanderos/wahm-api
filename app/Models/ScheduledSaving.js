@@ -4,6 +4,15 @@ const Model = use('Model');
 
 class ScheduledSaving extends Model {
 
+  static boot () {
+    super.boot();
+
+    this.addHook('beforeSave', async (savingInstance) => {
+      savingInstance.created_at = new Date();
+      savingInstance.updated_at = new Date();
+    });
+  }
+
   static get createdAtColumn() {
     return null;
   }

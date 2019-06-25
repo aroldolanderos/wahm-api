@@ -33,4 +33,8 @@ Route.group(() => {
   Route.get('savings', 'SavingController.all').middleware(['auth']);
   Route.post('savings', 'SavingController.save').middleware(['auth']);
 
+  Route.get('scheduled/savings/:id', 'ScheduledSavingController.findOne').middleware(['auth']);
+  Route.get('scheduled/savings', 'ScheduledSavingController.all').middleware(['auth']);
+  Route.post('scheduled/savings', 'ScheduledSavingController.save').middleware(['auth']);
+
 }).prefix('api/v1');
