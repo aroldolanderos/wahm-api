@@ -4,6 +4,14 @@ const Model = use('Model');
 
 class Saving extends Model {
 
+  static boot () {
+    super.boot();
+
+    this.addHook('beforeSave', async (savingInstance) => {
+      savingInstance.created_at = new Date();
+    });
+  }
+
   static get createdAtColumn() {
     return null;
   }

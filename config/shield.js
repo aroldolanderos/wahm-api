@@ -138,6 +138,7 @@ module.exports = {
       '/api/v1/login',
       '/api/v1/register',
       '/api/v1/incomes',
+      '/api/v1/savings',
       '/api/v1/expenditures',
     ],
     cookieOptions: {

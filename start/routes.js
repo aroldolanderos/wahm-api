@@ -29,4 +29,8 @@ Route.group(() => {
   Route.get('expenditures', 'ExpenditureController.all').middleware(['auth']);
   Route.post('expenditures', 'ExpenditureController.save').middleware(['auth']);
 
+  Route.get('savings/:id', 'SavingController.findOne').middleware(['auth']);
+  Route.get('savings', 'SavingController.all').middleware(['auth']);
+  Route.post('savings', 'SavingController.save').middleware(['auth']);
+
 }).prefix('api/v1');
