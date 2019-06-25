@@ -140,6 +140,7 @@ module.exports = {
       '/api/v1/incomes',
       '/api/v1/savings',
       '/api/v1/scheduled/savings',
+      '/api/v1/scheduled/incomes',
       '/api/v1/expenditures',
     ],
     cookieOptions: {
