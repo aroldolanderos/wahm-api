@@ -24,6 +24,7 @@ Route.group(() => {
   Route.get('incomes/:id', 'IncomeController.findOne').middleware(['auth']);
   Route.get('incomes', 'IncomeController.all').middleware(['auth']);
   Route.post('incomes', 'IncomeController.save').middleware(['auth']);
+  Route.delete('incomes/:id', 'IncomeController.delete').middleware(['auth']);
 
   Route.get('expenditures/:id', 'ExpenditureController.findOne').middleware(['auth']);
   Route.get('expenditures', 'ExpenditureController.all').middleware(['auth']);

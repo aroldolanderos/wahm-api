@@ -53,6 +53,22 @@ class IncomeController {
       'message': 'Income created!'
     });
   }
+
+  async delete({response, params, auth}) {
+    const incomeId = params.id;
+    const user = await auth.getUser();
+    const wallet = await Wallet.findBy('user_id', user.id);
+
+    const income = await Income.query()
+      .where('wallet_id', '=', wallet.id)
+      .where('id', '=', incomeId)
+      .delete();
+
+    return response.json({
+      'data': income,
+      'message': 'Income deleted!'
+    });
+  }
 }
 
 module.exports = IncomeController;
