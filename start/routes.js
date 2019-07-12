@@ -21,14 +21,18 @@ Route.group(() => {
   Route.post('register', 'AuthController.register');
   Route.put('profile', 'AuthController.profile').middleware(['auth:jwt']);
 
-  Route.get('incomes/:id', 'IncomeController.findOne').middleware(['auth']);
-  Route.get('incomes', 'IncomeController.all').middleware(['auth']);
-  Route.post('incomes', 'IncomeController.save').middleware(['auth']);
-  Route.delete('incomes/:id', 'IncomeController.delete').middleware(['auth']);
 
-  Route.get('expenditures/:id', 'ExpenditureController.findOne').middleware(['auth']);
-  Route.get('expenditures', 'ExpenditureController.all').middleware(['auth']);
-  Route.post('expenditures', 'ExpenditureController.save').middleware(['auth']);
+  Route.resource('incomes', 'IncomeController')
+    .middleware(['auth'])
+    .apiOnly();
+
+  Route.resource('expenditures', 'ExpenditureController')
+    .middleware(['auth'])
+    .apiOnly();
+
+  // Route.get('expenditures/:id', 'ExpenditureController.findOne').middleware(['auth']);
+  // Route.get('expenditures', 'ExpenditureController.all').middleware(['auth']);
+  // Route.post('expenditures', 'ExpenditureController.save').middleware(['auth']);
 
   Route.get('savings/:id', 'SavingController.findOne').middleware(['auth']);
   Route.get('savings', 'SavingController.all').middleware(['auth']);

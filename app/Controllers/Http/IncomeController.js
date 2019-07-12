@@ -6,7 +6,7 @@ const Wallet = use('App/Models/Wallet');
 const Database = use('Database');
 
 class IncomeController {
-  async all({ response, auth }) {
+  async index({ response, auth }) {
     const user = await auth.getUser();
     const wallet = await Wallet.findBy('user_id', user.id);
 
@@ -20,7 +20,7 @@ class IncomeController {
     });
   }
 
-  async findOne({ response, params, auth }) {
+  async show({ response, params, auth }) {
     const incomeId = params.id;
     const user = await auth.getUser();
     const wallet = await Wallet.findBy('user_id', user.id);
@@ -36,7 +36,7 @@ class IncomeController {
     });
   }
 
-  async save({request, response, auth}) {
+  async store({request, response, auth}) {
     const user = await auth.getUser();
     const wallet = await Wallet.findBy('user_id', user.id);
     //
@@ -54,7 +54,7 @@ class IncomeController {
     });
   }
 
-  async delete({response, params, auth}) {
+  async destroy({response, params, auth}) {
     const incomeId = params.id;
     const user = await auth.getUser();
     const wallet = await Wallet.findBy('user_id', user.id);
@@ -65,7 +65,6 @@ class IncomeController {
       .delete();
 
     return response.json({
-      'data': income,
       'message': 'Income deleted!'
     });
   }

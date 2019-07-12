@@ -5,7 +5,7 @@ const Expenditure = use('App/Models/Expenditure');
 const Wallet = use('App/Models/Wallet');
 
 class ExpenditureController {
-  async all({ response, auth }) {
+  async index({ response, auth }) {
     const user = await auth.getUser();
     const wallet = await Wallet.findBy('user_id', user.id);
 
@@ -19,7 +19,7 @@ class ExpenditureController {
     });
   }
 
-  async findOne({ response, params, auth }) {
+  async show({ response, params, auth }) {
     const expenditureId = params.id;
     const user = await auth.getUser();
     const wallet = await Wallet.findBy('user_id', user.id);
@@ -35,7 +35,7 @@ class ExpenditureController {
     });
   }
 
-  async save({request, response, auth}) {
+  async store({request, response, auth}) {
     const user = await auth.getUser();
     const wallet = await Wallet.findBy('user_id', user.id);
 
@@ -52,6 +52,22 @@ class ExpenditureController {
     return response.json({
       'data': newExpenditure,
       'message': 'Expenditure created!'
+    });
+  }
+
+  async destroy({ response, params, auth }) {
+    const expenditureId = params.id;
+    const user = await auth.getUser();
+    const wallet = await Wallet.findBy('user_id', user.id);
+
+    const expenditure = await Expenditure.query()
+      .where('wallet_id', '=', wallet.id)
+      .where('id', '=', expenditureId)
+      .delete();
+
+    return response.json({
+      'data': expenditure,
+      'message': 'Expenditure listed!'
     });
   }
 }
